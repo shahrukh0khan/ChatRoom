@@ -6,7 +6,7 @@ import java.io.IOException;
 public class Coordinator {
 
    public static File contactlist() throws IOException {
-       File file = new File("/Users/abdullahzulfiqar/NetBeansProjects/ChatRoom/src/contactlist.txt");
+       File file = new File("C:/Users/WALI COMPUTERS/IdeaProjects/ChatRoom/ChatRoom");
        if (file.createNewFile()) {
            System.out.println("File is created!");
        } else {

@@ -119,7 +119,16 @@ public class ChatClient {
                 }
                 else if (line.startsWith("list")) {
                     messageArea.append(line.substring(5) + "\n");
+                } else if (line.startsWith("leaving") && !ChatServer.IDs.isEmpty()) {
+
+                    serverAddress = ChatServer.IPs.get(1);
+                    Socket socketnew = new Socket(serverAddress, Integer.parseInt(port));
+                    socket = socketnew;
+                    in = new Scanner(socket.getInputStream());
+                    out = new PrintWriter(socket.getOutputStream(), true);
+
                 }
+
             }
 
         } finally {

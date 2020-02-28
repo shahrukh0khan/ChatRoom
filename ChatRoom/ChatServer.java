@@ -29,8 +29,8 @@ public class ChatServer {
     public static ArrayList<String> IDs = new ArrayList<>();
 
 
-    public static ArrayList<String> dataset = new ArrayList<>();
-
+    public static ArrayList<String> IPs = new ArrayList<>();
+    public static ArrayList<String> Ports = new ArrayList<>();
     // The set of all the print writers for all the clients, used for broadcast.
     private static Set<PrintWriter> writers = new HashSet<>();
 
@@ -148,7 +148,7 @@ public class ChatServer {
                 SimpleDateFormat sdf = new SimpleDateFormat("E yyyy/MM/dd HH-mm-ss");
 
                 Credentials IP = new Credentials();
-                dataset.add(IP.IP());
+                IPs.add(IP.IP());
                 // Accept messages from this client and broadcast them.
                 while (true) {
                     String input = in.nextLine();
@@ -163,7 +163,7 @@ public class ChatServer {
                             writer.println("MESSAGE " + name + "(coordinator)");
                         }
                         if (input.toLowerCase().startsWith("list")) {
-                            writer.println("list " +"ID: " + IDs + "Name: " +  names +"IP: " + dataset + "\n");
+                            writer.println("list " +"ID: " + IDs + "Name: " +  names +"IP: " + IPs + "\n");
                         }
 
                     }
@@ -200,7 +200,8 @@ public class ChatServer {
                     System.out.println(name + " is leaving");
                     names.remove(name);
                     for (PrintWriter writer : writers) {
-                         writer.println("MESSAGE " + name + " has left");
+                        writer.println("leaving");
+                        writer.println("MESSAGE " + name + " has left");
                     }
 
                 }
