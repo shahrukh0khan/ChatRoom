@@ -93,7 +93,7 @@ public class ChatClient {
         try {
             Credentials p = new Credentials();
             String port = p.getPort();
-
+            p.IP();
             Socket socket = new Socket(serverAddress, Integer.parseInt(port));
 
             in = new Scanner(socket.getInputStream());

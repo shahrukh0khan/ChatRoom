@@ -75,6 +75,7 @@ public class ChatServer {
          * server's main method, so this has to be as short as possible.
          */
         public Handler(Socket socket) {
+
             this.socket = socket;
         }
 
@@ -92,6 +93,11 @@ public class ChatServer {
                 //sending output to socket
                 out = new PrintWriter(socket.getOutputStream(), true);
 
+                out.println(socket.getPort());
+                IP = in.nextLine();
+                if(!IPs.contains(IP)) {
+                    IPs.add(IP);
+                }
                 // Keep requesting an ID until we get a unique one.
                 while (true) {
                     out.println("SUBMITID");
@@ -147,8 +153,8 @@ public class ChatServer {
                 Date date = new Date();
                 SimpleDateFormat sdf = new SimpleDateFormat("E yyyy/MM/dd HH-mm-ss");
 
-                Credentials IP = new Credentials();
-                IPs.add(IP.IP());
+               // Credentials IP = new Credentials();
+                // IPs.add(IP.IP());
                 // Accept messages from this client and broadcast them.
                 while (true) {
                     String input = in.nextLine();
